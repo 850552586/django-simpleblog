@@ -1,0 +1,143 @@
+{% block content %}
+{% load static %}
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <title>搜索</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ericam_">
+
+    <!-- CSS -->
+
+    <link href="{%static 'css/font-awesome.min.css'%}" rel="stylesheet" />
+    <link rel="shortcut icon" href="{% static 'css/images/gt_favicon.png' %}">
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css'%}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <!--<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script src="{%static 'js/jquery.min.js'%}"></script>
+    <script src="{%static 'js/bootstrap.min.js'%}"></script>
+</head>
+
+<body>
+    <!--导航栏-->
+    <div class="navbar navbar-inverse navbar-fixed-top headroom">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Button for smallest screens -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand"><img src="{%static 'css/images/lo.png'%}" alt="Progressus HTML5 template"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{%url 'blog:home'%}">首页</a></li>
+                    <li><a href="{%url 'blog:tags'%}">标签</a></li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><img src="{%static avatar%}" width="60"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{nickname}}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{%url 'blog:userinfo'%}">个人中心</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{%url 'logout'%}">注销</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--搜索栏-->
+                <form class="navbar-form navbar-right" method="POST" action="{%url 'blog:search'%}">
+                    <!--navbar-form:控制搜索表单与其他元素水平-->
+                    <div class="form-group">
+                        <input type="text" name="info" class="form-control" placeholder="关键字">
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+            </div>
+            <!--/.nav-collapse -->
+
+        </div>
+    </div>
+
+    <!-- container -->
+    <div class="container blog">
+        <div class="row">
+            <!-- Article main content -->
+            <article class="col-sm-8 maincontent" style="min-height: 800;">
+                <header class="page-header" style="padding-top: 100px">
+                    <h1 class="page-title" color="">哆啦A梦的资源袋<img src="{%static 'css/images/dlam.png'%}" width="8%"></h1>
+                </header>
+                <div id="blog">
+                    {% for post in post_list %}
+                    <article>
+                        <h3>{{ post.title }}</h3>
+                        <p class="blog-time">
+                            <font color="grey">
+                                <i class="fa fa-columns"></i> 发表于{{ post.created_time |date:'Y/m/d'}}&nbsp;&nbsp;
+                                | <i class="fa fa-folder"></i> 分类于 <a class="post-category post-category-pure"
+                                    href="{%url 'blog:category' id=post.category_id%}">{{ post.category }}</a>&nbsp;&nbsp;
+                                | 热度：{{ post.views }}</font>
+                        </p>
+                        <p>
+                            {{ post.content|striptags|truncatechars_html:20 }}
+                        </p>
+                        <p><a class="btn btn-success" href="{%url 'blog:detail' id=post.article_id%}">阅读全文</a></p>
+
+                        {% endfor %}
+                        {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
+                        <div>
+                            {% if post_list.has_previous %}
+                            <ul class="pager">
+                                <li class="previous"><a href="?page={{ post_list.previous_page_number }}"><span
+                                            aria-hidden="true">&larr;</span> Older</a></li>
+                            </ul>
+                            {% endif %}
+                            {% if post_list.has_next %}
+                            <ul class="pager">
+                                <li class="next"><a href="?page={{ post_list.next_page_number }}">Newer <span
+                                            aria-hidden="true">&rarr;</span></a></li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </article>
+                    {% endif %}
+                </div><!-- /.blog-post -->
+
+            </article>
+            <!-- /Article -->
+
+            <!-- Sidebar -->
+            <aside class="col-sm-4 sidebar sidebar-right">
+
+                <div class="widget" style="padding-top: 200px">
+                    <h4>食用须知</h4>
+                    <ul class="list-unstyled list-spaces">
+                            <li>项目持有者：Ericam</li>
+                            <li>支持一切非商业应用</li>
+                            <li>转载/使用请标注原作者</li>
+                            <li>请勿二次教程</li>
+                            <li>合作请戳-->私信<a href="https://www.zhihu.com/people/qing-ru-han/activities">知乎</a></li>
+                        </ul>
+                </div>
+            </aside>
+            <!-- /Sidebar -->
+
+        </div>
+    </div> <!-- /container -->
+
+
+    <footer id="footer" class="top-space">
+        <div class="footer2">
+            <div class="container">
+                <p class="text-center">Copyright &copy; 2020 Ericam blog</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+{% endblock %}

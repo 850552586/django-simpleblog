@@ -1,0 +1,57 @@
+{% load static %}
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ericam_">
+
+    <!-- CSS -->
+	<title>Ericam_blog</title>
+	<link rel="shortcut icon" href="{% static 'css/images/gt_favicon.png' %}">
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap-theme.css'%}"  >
+	<link rel="stylesheet" href="{% static 'css/log.css'%}">
+	<link rel="stylesheet" href="{% static 'css/blog.css'%}">
+	</head>
+
+
+<body class="back">
+  <!--导航栏-->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand"><img src="{%static 'css/images/lo.png'%}" alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="nav navbar-nav navbar-right">
+								<!--在这里填写登录提交  1-->
+								<a class="btn" href="{% url 'login' %}">登录 / 注册</a></li>
+			</div>
+		</div>
+	</div>
+
+	  <center>
+    <div class="container" style="padding-top:300px;min-height:800px">
+      <div class="row">,.
+        <p class="lead"><font color="white"">个人博客系统，尽情的享用吧(〃'▽'〃)</font></p>
+        <p class="tagline"><font color="white">如果您有优秀的建议，欢迎投递哦</font></p>
+							<!--在这里填写登录提交  2-->
+							<p><a class="btn btn-action btn-lg" role="button" href="{% url 'login' %}">START NOW</a></p>
+      </div>
+    </div>
+	</center>
+
+
+   <footer id="footer" class="top-space">
+		<div class="footer2">
+			<div class="container">
+				<p class="text-center">Copyright &copy; 2020, Ericam_blog</p>
+			</div>
+		</div>
+  </footer>
+</body>
+</html>

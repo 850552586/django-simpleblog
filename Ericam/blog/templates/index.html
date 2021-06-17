@@ -1,0 +1,58 @@
+{% load static %}
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <title>Eriam_blog 首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ericam_">
+
+    <!-- CSS -->
+	<link rel="shortcut icon" href="{% static 'css/images/gt_favicon.png' %}">
+	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap-theme.css'%}" media="screen" >
+	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+	<link rel="stylesheet" href="{% static 'css/log.css' %}">
+</head>
+
+<body class="back">
+  <script src = "E:/bootstrap/bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+  <!--导航栏-->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<!-- Button for smallest screens -->
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				  <a class="navbar-brand"><img src="{%static 'css/images/lo.png'%}" alt="Progressus HTML5 template"></a>
+			  </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a><font size="4" color="white">{{user.nickname}}</font></a></li>
+            <li><a href="{%url 'index_unlog'%}"><i class="fa fa-sighout"></i><font size="4">注销</font></a></li>
+        </ul>
+    </div>
+	</div>
+</div>
+
+	  <center>
+    <div class="container" style="padding-top:300px;min-height:800px">
+      <div class="row">,.
+        <p class="lead"><font color="white"">Ericam Blog,这里有好多好多资源喔，尽情的享用吧(〃'▽'〃)</font></p>
+        <p class="tagline"><font color="white">如果您有优秀的资源，欢迎投递哦</font></p>
+        <p><a class="btn btn-action btn-lg" role="button" href="{%url 'blog:home'%}">START NOW</a></p>
+      </div>
+    </div>
+	</center>
+
+   <footer id="footer" class="top-space">
+		<div class="footer2">
+			<div class="container">
+				<p class="text-center">Copyright &copy; 2020,Ericam blog</p>
+			</div>
+		</div>
+  </footer>
+</body>
+</html>

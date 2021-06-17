@@ -1,0 +1,11 @@
+author：Ericam_
+项目版本：
+  python:3.7
+  django:3.0
+  依赖包: pillow，django-simpleui，django_summernote
+
+测试用户（数据库已存在）：
+  root
+  123456
+
+超级管理员可自己创建

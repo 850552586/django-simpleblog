@@ -1,0 +1,106 @@
+{%load static%}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+<title>个人中心</title>
+<!-- Meta -->
+<meta charset="utf-8">
+<!-- Global CSS -->
+<link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="{%static 'css/font-awesome.css'%}">
+
+<!-- Theme CSS -->
+<link id="theme-style" rel="stylesheet" href="{%static 'css/userinfo.css'%}">
+<link rel="shortcut icon" href="{% static 'css/images/gt_favicon.png' %}">
+<script src="{%static 'js/jquery.min.js'%}"></script>
+</head>
+
+<body>
+
+<header class="header">
+	<div class="top-bar container-fluid">
+		<div class="actions">
+			<a class="btn hidden-xs" href="{%url 'blog:home'%}"> 首页</a>
+			<a class="btn hidden-xs" href="{%url 'reset'%}"> 修改密码</a>
+			<a class="btn" href="{%url 'logout'%}"> 注销</a>
+		</div><!--//actions-->
+	</div><!--//top-bar-->
+
+	<div class="intro">
+		<div class="container text-center">
+			<img class="profile-image" src="{%static avatar%}" alt="">
+			<h1 class="name">{{user.nickname}}</h1>
+			<div class="profile">
+				<p>我很想念你，就像想念我的才华与欢欣。</p>
+			</div><!--//profile-->
+		</div><!--//container-->
+	</div><!--//intro-->
+
+	<div class="contact-info">
+		<div class="container text-center">
+			<ul class="list-inline">
+				<li class="email"><i class="fa fa-envelope"></i>邮箱：{{user.email}}</li>
+				<li><i class="fa fa-phone"></i>注册时间：{{user.created_time|truncatechars:20}}</li>
+				<li class="website"><i class="fa fa-globe"></i>评论数：{{user.comment_num}}</li>
+			</ul>
+		</div><!--//container-->
+	</div><!--//contact-info-->
+
+
+
+</header><!--//header-->
+
+<div class="wrapper container">
+	<section id="experiences-section" class="experiences-section section">
+		<h2 class="section-title">评论</h2>
+		<br>
+		<div class="timeline">
+				{% for comm in comment_list %}
+				<div class="item">
+				<div class="work-place">
+					<h3 class="place"><a href = "{%url 'blog:detail' id=comm.article%}">{{comm.title}}</a></h3>
+					<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>{{comm.createtime}}</div>
+					<p>  {{comm.body}} <a class="pull-right" name="cd" href="#" ><font color="red">删除</font></a></p>
+					<input name="commentid" value="{{comm.id}}" style="display:none">
+				</div>
+				<br><br>
+			</div><!--//item-->
+			{% endfor %}
+		</div>
+			</section>
+</div><!--//wrapper-->
+</body>
+</html>
+<script>
+	init();
+	function init(){
+			var cd = $("[name='cd']");
+			for(var i=0; i<cd.length; i++){
+                cd[i].index = i;
+                cd[i].onclick = function(){
+                    commentdel(this.index);
+                }
+			}
+		}
+	function commentdel(id){
+			var commentid = $("input[name='commentid']")[id].value;
+			$.ajax({   
+					 url: 'commentdel',     //请求url地址
+					 type: "POST",
+					 data: {"comment_id":commentid},       //发送post请求携带的数据信息
+					//dataType: "json",     //期望返回的数据格式，也可以不设置
+					success: function (data) 
+					{
+						alert("删除成功");
+						history.go(0);
+					},
+					error:function () {
+						alert("服务器错误，删除错误");
+					}
+				})
+	}
+</script>
+	

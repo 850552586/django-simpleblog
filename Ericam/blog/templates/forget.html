@@ -1,0 +1,32 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+    <link rel="shortcut icon" href="{% static 'css/images/gt_favicon.png' %}">
+    <link rel="stylesheet" href="{%static 'css/log.css' %}">
+    <link rel="stylesheet" href="{%static 'css/semantic.css' %}">
+</head>
+<body class="forget">
+    <div class="ui center aligned grid" style="margin-top: 200px">
+        <div class="ui six wide column">
+            <h1 class="ui teal header">Ericam blog-忘记密码</h1>
+            <div class="ui segment">
+                <div class="ui content">
+                    <form class="ui form" method="post" action="{%url 'forget'%}">
+                        <div class="field">
+                            <input type="text" name="username" placeholder="请输入用户名"><br>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="email" placeholder="请输入邮箱"><br>
+                        </div>
+                        {{ error }}<br>
+                        <button class="ui fluid large teal button" type="submit">下一步</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

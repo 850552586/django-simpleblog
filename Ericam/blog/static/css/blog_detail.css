@@ -1,0 +1,15 @@
+.blog{padding-top:100px;background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);min-height: 1500px; }
+.blog-time{font-family:courier;color:#8E8E8E;}
+.comment_list{background: url("images/comment.png")}
+
+
+.footer { background: #1919; padding: 15px 0; color: #777; font-size: 12px; }
+	.footer a { color: #aaa; }
+		.footer a:hover { color: #fff; }
+		.footer p { margin: 0; }
+
+.blog img{
+	width: 50%;
+    margin-left: 25%;
+    border-radius: 10px;
+}

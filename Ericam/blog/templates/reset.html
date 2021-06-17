@@ -1,0 +1,32 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>重置密码</title>
+    <link rel="shortcut icon" href="{% static 'css/images/gt_favicon.png' %}">
+    <link rel="stylesheet" href="{%static 'css/semantic.css' %}">
+    <link rel="stylesheet" href="{%static 'css/log.css' %}">
+</head>
+<body class="reset">
+    <div class="ui center aligned grid" style="margin-top: 200px">
+        <div class="ui six wide column">
+            <h1 class="ui teal header">Ericam blog-重置密码</h1>
+            <div class="ui segment">
+                <div class="ui content">
+                    <form class="ui form" method="post" action="{%url 'reset'%}">
+                        <div class="field">
+                            <input type="password" name="password1" placeholder="请输入新密码"><br>
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password2" placeholder="请确认新密码"><br>
+                        </div>
+                        {{ error }}<br>
+                        <button class="ui fluid large teal button" type="submit">确认修改</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
